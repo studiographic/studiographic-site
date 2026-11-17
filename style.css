@@ -1,0 +1,181 @@
+@font-face {
+  font-family: "Alan Sans";
+  src: url("fonts/alan-sans.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+:root {
+  --ink: #ffffff;
+  --quiet: #8f8f8f;
+  --ground: #000000;
+  --blue: #2f63c4;
+  --rule: #262626;
+  --gutter: clamp(20px, 5.5vw, 96px);
+  --small: clamp(0.9375rem, 0.88rem + 0.25vw, 1.0625rem);
+  --display: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  --mark: clamp(220px, 30vw, 460px);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--ground); }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Alan Sans", system-ui, sans-serif;
+  font-size: var(--small);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--blue); color: var(--ink); }
+
+/* The hero graphic: soft blue wisps from the top-right corner, drawn by field.js. */
+.field {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 72svh;
+  pointer-events: none;
+}
+
+/* Without WebGL: a still, soft glow in the same place. */
+.field.static {
+  background: radial-gradient(70% 90% at 100% 0, rgba(47, 99, 196, 0.42), rgba(10, 26, 64, 0.25) 45%, transparent 75%);
+}
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  padding: var(--gutter);
+  padding-bottom: max(var(--gutter), env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas:
+    ".        ."
+    "intro    ."
+    "projects contact";
+  column-gap: var(--gutter);
+}
+
+.intro { grid-area: intro; margin-bottom: clamp(48px, 7vh, 88px); }
+
+.mark { margin: 0; line-height: 0; }
+.mark img {
+  display: block;
+  width: var(--mark);
+  height: auto;
+}
+
+.line {
+  margin: 0.9em 0 0;
+  color: var(--quiet);
+  font-size: var(--small);
+}
+
+.label {
+  margin: 0 0 1.1em;
+  font-size: var(--small);
+  font-weight: 400;
+  color: var(--quiet);
+}
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 6px;
+}
+
+.projects { grid-area: projects; }
+
+.projects li { border-top: 1px solid var(--rule); }
+.projects li:last-child { border-bottom: 1px solid var(--rule); }
+
+.projects a {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  column-gap: clamp(16px, 2.4vw, 36px);
+  padding: clamp(14px, 1.6vw, 22px) 0;
+}
+
+.name {
+  font-size: var(--display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.note { color: var(--quiet); }
+
+.go {
+  width: 1.25em;
+  height: 1.25em;
+  align-self: center;
+  fill: none;
+  stroke: var(--quiet);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 240ms cubic-bezier(0.16, 1, 0.3, 1), transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projects a:hover .name,
+.projects a:focus-visible .name { color: var(--blue); }
+.projects a:hover .go,
+.projects a:focus-visible .go { stroke: var(--ink); transform: translate(2px, -2px); }
+
+.contact {
+  grid-area: contact;
+  align-self: start;
+  text-align: right;
+}
+.contact li + li { margin-top: 0.25em; }
+/* Set the first contact link on the project name's baseline. */
+.contact ul { padding-top: calc(clamp(14px, 1.6vw, 22px) + var(--display) * 0.89 - var(--small) * 1.1); }
+.contact a {
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact a:hover { text-decoration-color: var(--blue); }
+
+@media (max-width: 760px) {
+  :root { --mark: min(64vw, 300px); }
+  .field { height: 46svh; }
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(30svh, 1fr) auto auto auto;
+    grid-template-areas: "." "intro" "projects" "contact";
+  }
+  .intro { margin-bottom: 40px; }
+  .projects a { grid-template-columns: 1fr auto; row-gap: 6px; }
+  .note { grid-column: 1; grid-row: 2; }
+  .go { grid-column: 2; grid-row: 1 / span 2; }
+  .contact { text-align: left; margin-top: 40px; }
+  .contact .label { margin-bottom: 0.4em; }
+  .contact ul { padding-top: 0; }
+  .contact li + li { margin-top: 0; }
+  .contact a { display: inline-block; padding: 11px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

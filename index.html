@@ -2,19 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Studiographic</title>
-<meta name="description" content="Studiographic">
+<meta name="description" content="Studiographic makes small apps and games.">
 <meta name="theme-color" content="#000000">
-<style>
-  html, body { margin: 0; height: 100%; background: #000; }
-  main { min-height: 100%; display: grid; place-items: center; padding: 0 16px; box-sizing: border-box; }
-  img { display: block; width: min(560px, 80vw); height: auto; }
-</style>
+<meta property="og:title" content="Studiographic">
+<meta property="og:description" content="Small apps and games.">
+<meta property="og:url" content="https://studiographic.ca/">
+<link rel="preload" href="fonts/alan-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="field.js"></script>
 </head>
 <body>
-<main>
-  <h1 style="margin:0"><img src="logo.png" width="638" height="107" alt="Studiographic"></h1>
+<canvas class="field" aria-hidden="true"></canvas>
+<main class="page">
+  <header class="intro">
+    <h1 class="mark"><img src="logo.svg" width="2504" height="380" alt="Studiographic"></h1>
+    <p class="line">Small apps and games.</p>
+  </header>
+
+  <section class="projects" aria-labelledby="projects-title">
+    <h2 id="projects-title" class="label">Projects</h2>
+    <ul>
+      <li>
+        <a href="https://macmin.studiographic.ca/">
+          <span class="name">MacMin</span>
+          <span class="note">Minimize animations for macOS</span>
+          <svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title" class="label">Contact</h2>
+    <ul>
+      <li><a href="mailto:hello@studiographic.ca">hello@studiographic.ca</a></li>
+      <li><a href="https://github.com/studiographic">GitHub</a></li>
+    </ul>
+  </section>
 </main>
 </body>
 </html>
