@@ -14,7 +14,7 @@
   --gutter: clamp(20px, 5.5vw, 96px);
   --small: clamp(0.9375rem, 0.88rem + 0.25vw, 1.0625rem);
   --display: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
-  --mark: clamp(220px, 30vw, 460px);
+  --mark: clamp(130px, 13vw, 200px);
   color-scheme: dark;
 }
 
@@ -152,7 +152,7 @@ a:focus-visible {
 .contact a:hover { text-decoration-color: var(--blue); }
 
 @media (max-width: 760px) {
-  :root { --mark: min(64vw, 300px); }
+  :root { --mark: 140px; }
   .field { height: 46svh; }
   .page {
     grid-template-columns: 1fr;
