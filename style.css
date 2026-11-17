@@ -57,27 +57,21 @@ body {
   padding-bottom: max(var(--gutter), env(safe-area-inset-bottom));
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr auto auto;
+  grid-template-rows: 1fr auto;
   grid-template-areas:
-    ".        ."
-    "intro    ."
+    "intro    intro"
     "projects contact";
   column-gap: var(--gutter);
 }
 
-.intro { grid-area: intro; margin-bottom: clamp(48px, 7vh, 88px); }
+/* The logo sits in the top-right corner, over the wisps. */
+.intro { grid-area: intro; justify-self: end; align-self: start; }
 
 .mark { margin: 0; line-height: 0; }
 .mark img {
   display: block;
   width: var(--mark);
   height: auto;
-}
-
-.line {
-  margin: 0.9em 0 0;
-  color: var(--quiet);
-  font-size: var(--small);
 }
 
 .label {
@@ -162,10 +156,9 @@ a:focus-visible {
   .field { height: 46svh; }
   .page {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(30svh, 1fr) auto auto auto;
-    grid-template-areas: "." "intro" "projects" "contact";
+    grid-template-rows: minmax(46svh, 1fr) auto auto;
+    grid-template-areas: "intro" "projects" "contact";
   }
-  .intro { margin-bottom: 40px; }
   .projects a { grid-template-columns: 1fr auto; row-gap: 6px; }
   .note { grid-column: 1; grid-row: 2; }
   .go { grid-column: 2; grid-row: 1 / span 2; }
